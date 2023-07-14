@@ -4,6 +4,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #form-id {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+        }
+
+        #form-id > input {
+            border: none;
+            background-color: rgba(169, 210, 209, 0.85);
+            border-radius: 15px;
+            height: 30px;
+            margin-top: 10px;
+            padding-left: 15px;
+        }
+
+        #form-id > * {
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            font-weight: bold;
+            color: rgb(55, 61, 63);
+        }
+
+        #submit-btn:hover {
+            background-color: rgba(131, 190, 190, 0.85);
+        }
+
+        #submit-btn:active {
+            background-color: rgba(48, 146, 145, 0.85);
+        }
+
+        #err-sign {
+            color: rgb(212, 0, 0);
+            text-align: center;
+            display: none;
+        }
+    </style>
+
     <title>GraphQL</title>
 </head>
 
@@ -14,7 +59,8 @@
             <input id="nickname" name="nickname" type="text" required><br><br>
             <label for="password">Enter your password:</label>
             <input id="password" name="password" type="password" required><br><br>
-            <input type="submit">
+            <label id="err-sign">User does not exist or password incorrect</label>
+            <input id="submit-btn" type="submit">
         </form>
     </div>
     <script src="app.js"></script>

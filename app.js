@@ -17,11 +17,17 @@ function entry() {
                 }
             })
             let token = await response.json()
-            localStorage.setItem('token', token)
-            location.replace('/new/data.html')
+            console.log(typeof token)
+            if (token.error) {
+                let err = document.getElementById('err-sign')
+                err.style.display = 'block'
+            } else {
+                localStorage.setItem('token', token)
+                location.replace('/data.html')
+            }
         })
     } else {
-        location.replace('/new/data.html')
+        location.replace('/data.html')
     }
 }
 
