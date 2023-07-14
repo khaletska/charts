@@ -10,14 +10,14 @@ let skills = document.getElementById('skills')
 function buildCharts() {
     let token = localStorage.getItem('token')
     if (token === null || token === undefined) {
-        location.replace('/index.html')
+        location.replace('charts/index.html')
     }
 
     getData(token)
         .then((info) => {
             const userInfo = info.data.user[0]
             studentName.innerText = `${userInfo.attrs.firstName}  ${userInfo.attrs.lastName}`
-            studentGitea.innerHTML = `<a href="https://01.kood.tech/git/${userInfo.login}">gitea: ${userInfo.login}</a>`
+            studentGitea.action = `https://01.kood.tech/git/${userInfo.login}`
             studentEmail.innerText = userInfo.attrs.email
             studentAuditRatio.innerText = `Your audit ratio: ${Math.round((userInfo.totalUp / userInfo.totalDown) * 10) / 10}`
 
@@ -51,7 +51,7 @@ function buildCharts() {
     const logout = document.getElementById('logout-btn')
     logout.addEventListener('click', () => {
         localStorage.removeItem('token')
-        location.replace('/index.html')
+        location.replace('charts/index.html')
     })
 }
 
