@@ -10,7 +10,7 @@ let skills = document.getElementById('skills')
 function buildCharts() {
     let token = localStorage.getItem('token')
     if (token === null || token === undefined) {
-        location.replace('charts/index.html')
+        location.replace('/index.html')
     }
 
     getData(token)
@@ -51,7 +51,7 @@ function buildCharts() {
     const logout = document.getElementById('logout-btn')
     logout.addEventListener('click', () => {
         localStorage.removeItem('token')
-        location.replace('charts/index.html')
+        location.replace('/index.html')
     })
 }
 
