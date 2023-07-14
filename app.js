@@ -23,11 +23,11 @@ function entry() {
                 err.style.display = 'block'
             } else {
                 localStorage.setItem('token', token)
-                location.replace('charts/data.html')
+                location.replace('/charts/data.html')
             }
         })
     } else {
-        location.replace('charts/data.html')
+        location.replace('/charts/data.html')
     }
 }
 

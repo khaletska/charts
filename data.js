@@ -10,18 +10,19 @@ let skills = document.getElementById('skills')
 function buildCharts() {
     let token = localStorage.getItem('token')
     if (token === null || token === undefined) {
-        location.replace('charts/index.html')
+        location.replace('/charts/index.html')
     }
 
     getData(token)
         .then((info) => {
             const userInfo = info.data.user[0]
+            console.log(userInfo)
             studentName.innerText = `${userInfo.attrs.firstName}  ${userInfo.attrs.lastName}`
             studentGitea.action = `https://01.kood.tech/git/${userInfo.login}`
             studentEmail.innerText = userInfo.attrs.email
             studentAuditRatio.innerText = `Your audit ratio: ${Math.round((userInfo.totalUp / userInfo.totalDown) * 10) / 10}`
 
-            makeAuditsChart(convertBytesToSize(userInfo.totalUp), convertBytesToSize(userInfo.totalDown))
+            makeAuditsChart(userInfo.totalUp, userInfo.totalDown)
 
             const regexPath = /^\/johvi\/div-01\/(?!.*piscine).*$/
             const regexTypeXp = /xp/gm
@@ -51,7 +52,7 @@ function buildCharts() {
     const logout = document.getElementById('logout-btn')
     logout.addEventListener('click', () => {
         localStorage.removeItem('token')
-        location.replace('charts/index.html')
+        location.replace('/charts/index.html')
     })
 }
 
@@ -153,8 +154,9 @@ function makeSkillsChart(tasks) {
 }
 
 function makeAuditsChart(up, down) {
+    console.log(up, down)
     var options = {
-        series: [up.amount, down.amount],
+        series: [up, down],
         chart: {
             width: 250,
             type: 'pie',
