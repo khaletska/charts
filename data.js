@@ -58,7 +58,7 @@ function buildCharts() {
 
 function makeXpChart(tasks) {
     const amountArray = tasks.map((task) => {
-        return convertBytesToSize(task.data)
+        return convertBytesToKB(task.data)
     })
 
     const categories = tasks.map((task) => task.name)
@@ -220,6 +220,13 @@ async function getData(token) {
 
     let data = await response.json()
     return data
+}
+
+function convertBytesToKB(bytes) {
+    return {
+        amount: Math.round(bytes*100/1000)/100,
+        size: "kB"
+    }
 }
 
 function convertBytesToSize(bytes) {
